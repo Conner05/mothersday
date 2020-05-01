@@ -18,7 +18,7 @@ function App() {
   }, [])
 
   return (
-    <div className="container" style={{ overflowY: "scroll" }}>
+    <div className="container" style={{ overflowY: "hidden" }}>
       <div className="row" style={{ marginTop: "50px" }}>
         <div className="col-12">
           <Header message={message} />
