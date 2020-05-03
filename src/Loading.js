@@ -32,14 +32,14 @@ export default function Loading() {
       } else {
         setDot1(color)
       }
-    }, 400)
+    }, 500)
     return () => {
       clearTimeout(ellipsesTimeout)
     }
   }, [dot1, dot2, dot3])
 
   return (
-    <div className="loading" aria-label="loading">
+    <div className="col-md-6 offset-md-3 loading" aria-label="loading">
       <img ref={img} src={elsie} className={rotate} alt="elsie moving" aria-label="picture of elsie moving" />
       <h1>
         Loading<span style={{ color: dot1 }}>.</span>
