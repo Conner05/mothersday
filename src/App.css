@@ -1,0 +1,52 @@
+.loading {
+  background-color: rgba(245, 245, 245, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.loading h1 {
+  text-align: center;
+  margin-top: -90px;
+}
+
+.loading img {
+  /* transform: rotate(50deg); */
+  display: block;
+  margin: 100px auto;
+  width: 40%;
+  border-radius: 70px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@keyframes rotation-reverse {
+  from {
+    transform: rotate(-50deg);
+  }
+  to {
+    transform: rotate(50deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(50deg);
+  }
+  to {
+    transform: rotate(-50deg);
+  }
+}
+
+.rotate {
+  animation: rotation 0.5s infinite linear;
+}
+
+.rotate-reverse {
+  animation: rotation-reverse 0.5s infinite linear;
+}

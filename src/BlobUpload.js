@@ -1,18 +1,17 @@
 import React, { useState, useRef } from "react"
-import * as utils from "./utils"
 
 const MESSAGE_TYPE = { SUCCESS: "success", ERROR: "danger" }
 const INPUT_IS_VALID_CLASS = { IS_VALID: "is-valid", IS_INVALID: "is-invalid" }
 
-export default function BlobUpload({ setNames, setMessage }) {
+export default function BlobUpload({ setNames, setMessage, setIsLoading }) {
   const [name, setName] = useState("")
   const [inputIsValidClass, setInputIsValidClass] = useState("")
   const fileInput = useRef()
 
-  const uploadFiles = async () => {
+  const uploadFiles = () => {
     setInputIsValidClass("")
+    setIsLoading(false)
     try {
-      await utils.postFiles(fileInput.current.files, name)
       setNames((currNames) => [name.trim().split(" ")[0], ...currNames])
       setName("")
       setMessage({ display: true, value: `Success! Thanks ${name}!`, type: MESSAGE_TYPE.SUCCESS })
@@ -27,6 +26,7 @@ export default function BlobUpload({ setNames, setMessage }) {
       setInputIsValidClass(INPUT_IS_VALID_CLASS.IS_INVALID)
       return
     }
+    setIsLoading(true)
     fileInput.current.click()
   }
 
@@ -64,7 +64,7 @@ export default function BlobUpload({ setNames, setMessage }) {
         <span role="img" aria-label="point right emoji">
           👉
         </span>
-        <span style={{ fontWeight: "bold" }}>&nbsp;Select Video&nbsp;</span>
+        <span style={{ fontWeight: "bold" }}>{` Select Video `}</span>
         <span role="img" aria-label="video camera emoji">
           🎥
         </span>

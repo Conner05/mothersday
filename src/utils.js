@@ -1,6 +1,6 @@
 import { BlobServiceClient } from "@azure/storage-blob"
 const blobSasUrl =
-  "https://mothersday.blob.core.windows.net/?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-05-01T22:22:00Z&st=2020-05-01T14:22:00Z&spr=https,http&sig=yCU3YeHeoarMARn81M%2BPgaXHfsWQrfGbiJGggdE5H%2BM%3D"
+  "https://mothersday.blob.core.windows.net/?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-12-31T19:41:23Z&st=2020-05-03T10:41:23Z&spr=https,http&sig=%2BO2gVjFvHYnVH4rb8eNiAb1R75z%2F5ikB2SPgZbPKVs0%3D"
 const blobServiceClient = new BlobServiceClient(blobSasUrl)
 const containerClient = blobServiceClient.getContainerClient("happymothersday")
 
@@ -32,7 +32,6 @@ async function getNamesOfPosters() {
       names.unshift(getName(blobItem.value.name))
       blobItem = await iter.next()
     }
-    console.log(names)
     return names
   } catch (error) {
     console.log(error)
