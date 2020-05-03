@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react"
+import * as utils from "./utils"
 
 const MESSAGE_TYPE = { SUCCESS: "success", ERROR: "danger" }
 const INPUT_IS_VALID_CLASS = { IS_VALID: "is-valid", IS_INVALID: "is-invalid" }
@@ -8,10 +9,12 @@ export default function BlobUpload({ setNames, setMessage, setIsLoading }) {
   const [inputIsValidClass, setInputIsValidClass] = useState("")
   const fileInput = useRef()
 
-  const uploadFiles = () => {
+  const uploadFiles = async () => {
     setInputIsValidClass("")
-    setIsLoading(false)
+    setIsLoading(true)
     try {
+      await utils.postFiles(fileInput.current.files, name)
+      setIsLoading(false)
       setNames((currNames) => [name.trim().split(" ")[0], ...currNames])
       setName("")
       setMessage({ display: true, value: `Success! Thanks ${name}!`, type: MESSAGE_TYPE.SUCCESS })
@@ -26,7 +29,6 @@ export default function BlobUpload({ setNames, setMessage, setIsLoading }) {
       setInputIsValidClass(INPUT_IS_VALID_CLASS.IS_INVALID)
       return
     }
-    setIsLoading(true)
     fileInput.current.click()
   }
 
